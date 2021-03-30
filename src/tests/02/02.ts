@@ -5,13 +5,15 @@ type AdressType = {
     homeNumber?: number
 }
 
+export type TechLvlType = "Junior" | "Middle" | "Senior"
+
 type TechType = {
     id: number
     name: string
-    level: "Junior" | "Middle" | "Senior"
+    level: TechLvlType
 }
 
-type StudentType = {
+export type StudentType = {
     id: number
     name: string
     age: number
