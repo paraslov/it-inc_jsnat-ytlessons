@@ -18,3 +18,5 @@ export type SamuraisType = {
 }
 const samurai = {id: 333747, name: "Tuo", weapon: "katana", rank: 3}
 samurais[samurai.id] = samurai
+
+
