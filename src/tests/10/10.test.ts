@@ -20,6 +20,8 @@ test('should replace teacher with id 125 for teacher with id 128', () => {
     const newTeachers = replaceTeacher(teachers, newTeacher, '125')
 
     // expectations
+    expect(teachers).not.toBe(newTeachers)
+    expect(teachers['124']).toBe(newTeachers['124'])
     expect(newTeachers['128'].name).toBe('Carl')
     expect(newTeachers['125']).toBeUndefined()
 })
@@ -29,16 +31,22 @@ test('should change teacher name with id 125 to Elise', () => {
     const newTeachers: TeachersType = changeTeacherName(teachers, 'Elise', '125')
 
     // expectations
+    expect(teachers).not.toBe(newTeachers)
+    expect(teachers['125']).not.toBe(newTeachers['125'])
+    expect(teachers['124']).toBe(newTeachers['124'])
     expect(newTeachers['125']).toBeDefined()
     expect(newTeachers['125'].name).toBe('Elise')
 })
 
 test('should change teacher id', () => {
     // action
-    const newTeachers: TeachersType = changeTeacherId(teachers, '125', '131')
+    const newTeachers: TeachersType = changeTeacherId(teachers, '124', '131')
 
     // expectations
+    expect(teachers).not.toBe(newTeachers)
+    expect(teachers['125']).toBe(newTeachers['125'])
     expect(newTeachers['131']).toBeDefined()
     expect(newTeachers['131'].id).toBe('131')
-    expect(newTeachers['125']).toBeUndefined()
+    expect(newTeachers['131'].name).toBe('Alina')
+    expect(newTeachers['124']).toBeUndefined()
 })
