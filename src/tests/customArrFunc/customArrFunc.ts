@@ -27,3 +27,16 @@ export const customFind = (array: Array<any>, func: (el: any) => any) => {
         }
     }
 }
+
+export const customReduce = (array: Array<any>, func: (acc: any, el: any) => any, Acc?: any) => {
+    let acc = array[0]
+    let i = 1
+    if(Acc) {
+        acc = Acc
+        i = 0
+    }
+    for(i; i<array.length; i++) {
+        acc = func(acc, array[i])
+    }
+    return acc
+}
