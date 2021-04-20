@@ -79,7 +79,7 @@ export const sortByName: StudentsType = students.map(st=>({...st})).sort((a, b) 
 export const sortByScores: StudentsType = students.map(st=>({...st})).sort((a, b) => b.scores - a.scores)
 
 // 6
-export const bestStudents: StudentsType = students.filter(st => st.scores>100)
+export const bestStudents: StudentsType = students.filter(st => st.scores>=100)
 
 // 6(a)
 export const deepCopyStudents2: StudentsType = students.map(st=>({...st}))
@@ -107,19 +107,27 @@ export const trueStudents = students.map(st => ({...st, isStudent: true}))
 
 // 10
 export const studentsWithMarriedNick: StudentsType =
-    students.map(st => st.name === 'Nick' ? {...st, isMarried: true} : {...st})
+    students.map(st => st.name === 'Nick' ? {...st, isMarried: true} : st)
 
 // 11
 export const Elise: StudentType | undefined = students.find(st => st.name === 'Elise')
 
 // 12
-export const bestStudent: StudentType = students.reduce((acc, st) => acc.scores < st.scores ? st : acc)
+export const bestStudent: StudentType = students
+    .reduce((acc, st) => acc.scores < st.scores ? st : acc)
 
 // 13
 export const scoresSum = students.reduce((acc, st) => acc + st.scores, 0)
 
 // 14
 export const addFriends = (students: StudentsType) => {
+    let friends = students.map(st => st.name)
+    return students.map(st => ({...st, friends: friends.filter(f => f !== st.name)}))
+}
+
+export const studentsWithFriendsList =  addFriends(students)
+
+/*export const addFriends = (students: StudentsType) => {
     let copyStudents = []
     for(let i = 0; i < students.length; i++) {
         let friends = []
@@ -131,6 +139,4 @@ export const addFriends = (students: StudentsType) => {
         copyStudents[i] = {...students[i], friends: friends}
     }
     return copyStudents
-}
-
-export const studentsWithFriendsList =  addFriends(students)
+}*/

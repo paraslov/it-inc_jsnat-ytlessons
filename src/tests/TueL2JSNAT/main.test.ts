@@ -16,11 +16,13 @@ import {
 
 test('1: copyUser shouldn be shallow copy of user', () => {
     expect(user).not.toBe(copyUser)
+    expect(user.name).toBe(copyUser.name)
     expect(user.friends).toBe(copyUser.friends)
 })
 
 test('2: deepCopyUser should be a deep copy of user', () => {
     expect(user).not.toBe(deepCopyUser)
+    expect(user.name).toBe(deepCopyUser.name)
     expect(user.friends).not.toBe(deepCopyUser.friends)
 })
 
@@ -28,12 +30,14 @@ test('3: copyStudents should be a shallow copy of students', () => {
     expect(copyStudents.length).toBe(6)
     expect(copyStudents).not.toBe(students)
     expect(students[0]).toBe(copyStudents[0])
+    expect(students[3]).toBe(copyStudents[3])
 })
 
 test('4: deepCopyStudents should be a deep copy of students', () => {
     expect(deepCopyStudents.length).toBe(6)
     expect(deepCopyStudents).not.toBe(students)
     expect(students[3]).not.toBe(deepCopyStudents[3])
+    expect(students[3].name).toBe(deepCopyStudents[3].name)
 })
 
 test('5: sortByName should sort students by names', () => {
@@ -51,10 +55,11 @@ test('5(a): sortByScores should sort students by scores with higher first', () =
 })
 
 test('6: bestStudents should return students with score higher than 100 points', () => {
-    expect(bestStudents.length).toBe(3)
+    expect(bestStudents.length).toBe(4)
     expect(bestStudents[0].name).toBe('Nick')
-    expect(bestStudents[1].name).toBe('Helen')
-    expect(bestStudents[2].scores).toBe(105)
+    expect(bestStudents[1].name).toBe('John')
+    expect(bestStudents[2].scores).toBe(110)
+    expect(bestStudents[3].name).toBe('Elise')
 })
 
 test('6(a): topStudents should be three best students', () => {
@@ -67,6 +72,7 @@ test('6(a): topStudents should be three best students', () => {
 
 test('6(b): newDeepCopyStudents should be students, sorted by scores', () => {
     expect(newDeepCopyStudents.length).toBe(6)
+    expect(newDeepCopyStudents).not.toBe(deepCopyStudents2)
     expect(newDeepCopyStudents[0].name).toBe('Nick')
     expect(newDeepCopyStudents[1].name).toBe('Helen')
     expect(newDeepCopyStudents[2].scores).toBe(105)
